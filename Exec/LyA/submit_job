@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#BSUB -J nyx_in_situ
+#BSUB -nnodes 2
+#BSUB -P CSC340
+#BSUB -W 01:00
+
+source /ccs/home/dutta/Nyx/Nyx/Exec/LyA/moduleLoad.sh
+
+cd $MEMBERWORK/csc340/nyx_test/
+jsrun -n 8 -c 1 ./Nyx3d.gnu.PROF.MPI.OMP.ex inputs
+

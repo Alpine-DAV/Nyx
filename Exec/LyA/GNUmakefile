@@ -1,7 +1,6 @@
 # AMREX_HOME defines the directory in which we will find all the AMReX code
 AMREX_HOME  ?= ../../../amrex
-ASCENT_HOME ?=/project/projectdirs/alpine/software/ascent/gnu/7.3.0/ascent-install/
-
+ASCENT_HOME ?=/ccs/home/dutta/Ascent/Repositories/Ascent_Sampling/install
 CVODE_LIB_DIR ?= $(CVODE_LIB)
 
 # TOP defines the directory in which we will find Source, Exec, etc
@@ -9,11 +8,11 @@ TOP = ../..
 
 # compilation options
 COMP    = gnu
-USE_MPI = FALSE
-USE_OMP = FALSE
+USE_MPI = TRUE
+USE_OMP = TRUE
 USE_HENSON = FALSE
 
-USE_ASCENT_INSITU=TRUE
+USE_ASCENT_INSITU = TRUE
 
 ifeq ($(USE_ASCENT_INSITU),TRUE)
   ASCENT_HOME ?= NOT_SET

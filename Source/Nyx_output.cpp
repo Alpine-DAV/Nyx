@@ -1082,9 +1082,10 @@ Nyx::blueprint_check_point ()
     amrex::Print()<< "Exporting Conduit Blueprint HDF5 files (cycle="
                   << cycle <<")"
                   << std::endl;
-
-    WriteBlueprintFiles(bp_mesh,"bp_example_",cycle,"hdf5");
-    WriteBlueprintFiles(bp_particles,"bp_particle_example_",cycle,"hdf5");
+	
+     //commented by soumya for now
+    //WriteBlueprintFiles(bp_mesh,"bp_example_",cycle,"hdf5");
+    //WriteBlueprintFiles(bp_particles,"bp_particle_example_",cycle,"hdf5");
 
     ///////////////////////////////////////////////////////////////////
     // Render with Ascent
@@ -1099,7 +1100,9 @@ Nyx::blueprint_check_point ()
     // tell ascent to use the ghost_indicator field to exclude ghosts
 
     open_opts["ghost_field_name"] = "ghost_indicator";
-    open_opts["actions_file"] = "nyx_ascent_mesh_actions.yaml";
+    //commented by soumya
+    //open_opts["actions_file"] = "nyx_ascent_mesh_actions.yaml";
+    open_opts["actions_file"] = "ascent_actions.json";
 
 #ifdef BL_USE_MPI
     // if mpi, we need to provide the mpi comm to ascent
@@ -1113,7 +1116,9 @@ Nyx::blueprint_check_point ()
     // render all mesh fields
     // call ascent, actions below will be overridden by those in
     // nyx_ascent_mesh_actions.yaml
-    {
+   
+    //commented by soumya
+    /*{
         int i=0;
         Node scenes;
         Node actions;
@@ -1131,11 +1136,17 @@ Nyx::blueprint_check_point ()
         actions.append()["action"] = "reset";
 
         ascent.execute(actions);
-    }
+    }*/
+    
+
+    Node actions;    
+    ascent.execute(actions);
     ascent.close();
 
     // user different default actions file for particles
-    open_opts["actions_file"] = "nyx_ascent_particle_actions.yaml";
+    
+    //commented by soumya
+    /*open_opts["actions_file"] = "nyx_ascent_particle_actions.yaml";
     ascent.open(open_opts);
 
     // now publish the particle mesh to ascent
@@ -1161,7 +1172,7 @@ Nyx::blueprint_check_point ()
         ascent.execute(actions);
     }
 
-    ascent.close();
+    ascent.close();*/
 
     /*  example that renders out every field of the amr mesh and particle mesh
     Ascent ascent;
